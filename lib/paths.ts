@@ -1,10 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const DATA_ROOT = path.join(
-  /* turbopackIgnore: true */ process.cwd(),
-  ".data",
-);
+// Vercel (and most serverless platforms) have a read-only filesystem except /tmp.
+const DATA_ROOT = process.env.VERCEL
+  ? path.join("/tmp", ".data")
+  : path.join(/* turbopackIgnore: true */ process.cwd(), ".data");
 
 export function ensureDataDirs(): void {
   fs.mkdirSync(path.join(DATA_ROOT, "uploads"), { recursive: true });
