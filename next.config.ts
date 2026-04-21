@@ -10,8 +10,10 @@ const nextConfig: NextConfig = {
   },
   serverExternalPackages: [
     "pdf-parse",
+    "pdfjs-dist",
     "mammoth",
     "@react-pdf/renderer",
+    "canvas",
   ],
 };
 
